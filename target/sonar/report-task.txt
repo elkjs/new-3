@@ -1,6 +1,0 @@
-projectKey=kartik:kartik.app.hello
-serverUrl=http://localhost:9000
-serverVersion=7.2.1.14109
-dashboardUrl=http://localhost:9000/dashboard?id=kartik%3Akartik.app.hello
-ceTaskId=AWUZDN6lfwp5vpXM3jWM
-ceTaskUrl=http://localhost:9000/api/ce/task?id=AWUZDN6lfwp5vpXM3jWM
