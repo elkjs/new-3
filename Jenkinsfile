@@ -21,5 +21,10 @@ pipeline {
         build 'sonargate'
       }
     }
+    stage('smartbear1.0') {
+       steps {
+         build 'readyapi'
+       }
+    }
   }
 }
