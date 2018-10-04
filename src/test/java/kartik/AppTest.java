@@ -17,4 +17,9 @@ public class AppTest
     {
         assertTrue( true );
     }
+    @Test
+    public void kk()
+    {
+        System.out.println("junit test");
+    }
 }
