@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="kartik.AppTest" time="0.066" tests="2" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="kartik.AppTest" time="20.988" tests="3" errors="1" skipped="0" failures="0">
   <properties>
     <property name="sun.desktop" value="windows"/>
     <property name="awt.toolkit" value="sun.awt.windows.WToolkit"/>
@@ -7,7 +7,7 @@
     <property name="java.specification.version" value="1.8"/>
     <property name="sun.cpu.isalist" value="amd64"/>
     <property name="sun.jnu.encoding" value="Cp1252"/>
-    <property name="java.class.path" value="E:\kartikapphello\target\test-classes;E:\kartikapphello\target\classes;C:\Users\Karti\.m2\repository\junit\junit\4.11\junit-4.11.jar;C:\Users\Karti\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;"/>
+    <property name="java.class.path" value="E:\kartikapphello\target\test-classes;E:\kartikapphello\target\classes;C:\Users\Karti\.m2\repository\junit\junit\4.11\junit-4.11.jar;C:\Users\Karti\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;C:\Users\Karti\.m2\repository\org\seleniumhq\selenium\selenium-chrome-driver\3.14.0\selenium-chrome-driver-3.14.0.jar;C:\Users\Karti\.m2\repository\org\seleniumhq\selenium\selenium-api\3.14.0\selenium-api-3.14.0.jar;C:\Users\Karti\.m2\repository\org\seleniumhq\selenium\selenium-remote-driver\3.14.0\selenium-remote-driver-3.14.0.jar;C:\Users\Karti\.m2\repository\net\bytebuddy\byte-buddy\1.8.15\byte-buddy-1.8.15.jar;C:\Users\Karti\.m2\repository\org\apache\commons\commons-exec\1.3\commons-exec-1.3.jar;C:\Users\Karti\.m2\repository\commons-codec\commons-codec\1.10\commons-codec-1.10.jar;C:\Users\Karti\.m2\repository\commons-logging\commons-logging\1.2\commons-logging-1.2.jar;C:\Users\Karti\.m2\repository\com\google\guava\guava\25.0-jre\guava-25.0-jre.jar;C:\Users\Karti\.m2\repository\com\google\code\findbugs\jsr305\1.3.9\jsr305-1.3.9.jar;C:\Users\Karti\.m2\repository\org\checkerframework\checker-compat-qual\2.0.0\checker-compat-qual-2.0.0.jar;C:\Users\Karti\.m2\repository\com\google\errorprone\error_prone_annotations\2.1.3\error_prone_annotations-2.1.3.jar;C:\Users\Karti\.m2\repository\com\google\j2objc\j2objc-annotations\1.1\j2objc-annotations-1.1.jar;C:\Users\Karti\.m2\repository\org\codehaus\mojo\animal-sniffer-annotations\1.14\animal-sniffer-annotations-1.14.jar;C:\Users\Karti\.m2\repository\org\apache\httpcomponents\httpclient\4.5.5\httpclient-4.5.5.jar;C:\Users\Karti\.m2\repository\org\apache\httpcomponents\httpcore\4.4.9\httpcore-4.4.9.jar;C:\Users\Karti\.m2\repository\com\squareup\okhttp3\okhttp\3.10.0\okhttp-3.10.0.jar;C:\Users\Karti\.m2\repository\com\squareup\okio\okio\1.14.1\okio-1.14.1.jar;"/>
     <property name="java.vm.vendor" value="Oracle Corporation"/>
     <property name="sun.arch.data.model" value="64"/>
     <property name="user.variant" value=""/>
@@ -18,8 +18,8 @@
     <property name="user.country" value="IN"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.8.0_181\jre\bin"/>
-    <property name="sun.java.command" value="C:\Users\Karti\AppData\Local\Temp\surefire7645106557800935298\surefirebooter3624520809719964466.jar C:\Users\Karti\AppData\Local\Temp\surefire7645106557800935298 2018-10-05T00-32-27_278-jvmRun1 surefire2057982757613891797tmp surefire_01537805433230702489tmp"/>
-    <property name="surefire.test.class.path" value="E:\kartikapphello\target\test-classes;E:\kartikapphello\target\classes;C:\Users\Karti\.m2\repository\junit\junit\4.11\junit-4.11.jar;C:\Users\Karti\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;"/>
+    <property name="sun.java.command" value="C:\Users\Karti\AppData\Local\Temp\surefire2718849844505369532\surefirebooter1398543408470414144.jar C:\Users\Karti\AppData\Local\Temp\surefire2718849844505369532 2018-10-06T13-03-33_453-jvmRun1 surefire3009340825078590980tmp surefire_09214488051112665301tmp"/>
+    <property name="surefire.test.class.path" value="E:\kartikapphello\target\test-classes;E:\kartikapphello\target\classes;C:\Users\Karti\.m2\repository\junit\junit\4.11\junit-4.11.jar;C:\Users\Karti\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;C:\Users\Karti\.m2\repository\org\seleniumhq\selenium\selenium-chrome-driver\3.14.0\selenium-chrome-driver-3.14.0.jar;C:\Users\Karti\.m2\repository\org\seleniumhq\selenium\selenium-api\3.14.0\selenium-api-3.14.0.jar;C:\Users\Karti\.m2\repository\org\seleniumhq\selenium\selenium-remote-driver\3.14.0\selenium-remote-driver-3.14.0.jar;C:\Users\Karti\.m2\repository\net\bytebuddy\byte-buddy\1.8.15\byte-buddy-1.8.15.jar;C:\Users\Karti\.m2\repository\org\apache\commons\commons-exec\1.3\commons-exec-1.3.jar;C:\Users\Karti\.m2\repository\commons-codec\commons-codec\1.10\commons-codec-1.10.jar;C:\Users\Karti\.m2\repository\commons-logging\commons-logging\1.2\commons-logging-1.2.jar;C:\Users\Karti\.m2\repository\com\google\guava\guava\25.0-jre\guava-25.0-jre.jar;C:\Users\Karti\.m2\repository\com\google\code\findbugs\jsr305\1.3.9\jsr305-1.3.9.jar;C:\Users\Karti\.m2\repository\org\checkerframework\checker-compat-qual\2.0.0\checker-compat-qual-2.0.0.jar;C:\Users\Karti\.m2\repository\com\google\errorprone\error_prone_annotations\2.1.3\error_prone_annotations-2.1.3.jar;C:\Users\Karti\.m2\repository\com\google\j2objc\j2objc-annotations\1.1\j2objc-annotations-1.1.jar;C:\Users\Karti\.m2\repository\org\codehaus\mojo\animal-sniffer-annotations\1.14\animal-sniffer-annotations-1.14.jar;C:\Users\Karti\.m2\repository\org\apache\httpcomponents\httpclient\4.5.5\httpclient-4.5.5.jar;C:\Users\Karti\.m2\repository\org\apache\httpcomponents\httpcore\4.4.9\httpcore-4.4.9.jar;C:\Users\Karti\.m2\repository\com\squareup\okhttp3\okhttp\3.10.0\okhttp-3.10.0.jar;C:\Users\Karti\.m2\repository\com\squareup\okio\okio\1.14.1\okio-1.14.1.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
     <property name="user.home" value="C:\Users\Karti"/>
     <property name="user.language" value="en"/>
@@ -31,7 +31,7 @@
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment"/>
-    <property name="surefire.real.class.path" value="C:\Users\Karti\AppData\Local\Temp\surefire7645106557800935298\surefirebooter3624520809719964466.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\Karti\AppData\Local\Temp\surefire2718849844505369532\surefirebooter1398543408470414144.jar"/>
     <property name="sun.boot.class.path" value="C:\Program Files\Java\jdk1.8.0_181\jre\lib\resources.jar;C:\Program Files\Java\jdk1.8.0_181\jre\lib\rt.jar;C:\Program Files\Java\jdk1.8.0_181\jre\lib\sunrsasign.jar;C:\Program Files\Java\jdk1.8.0_181\jre\lib\jsse.jar;C:\Program Files\Java\jdk1.8.0_181\jre\lib\jce.jar;C:\Program Files\Java\jdk1.8.0_181\jre\lib\charsets.jar;C:\Program Files\Java\jdk1.8.0_181\jre\lib\jfr.jar;C:\Program Files\Java\jdk1.8.0_181\jre\classes"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
@@ -63,4 +63,23 @@
   </properties>
   <testcase name="shouldAnswerWithTrue" classname="kartik.AppTest" time="0.003"/>
   <testcase name="kk" classname="kartik.AppTest" time="0"/>
+  <testcase name="testSelenium" classname="kartik.AppTest" time="20.926">
+    <error message="Timed out waiting for driver server to start.&#10;Build info: version: &apos;3.14.0&apos;, revision: &apos;aacccce0&apos;, time: &apos;2018-08-02T20:19:58.91Z&apos;&#10;System info: host: &apos;DESKTOP-EOFSMQU&apos;, ip: &apos;192.168.1.8&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;1.8.0_181&apos;&#10;Driver info: driver.version: ChromeDriver" type="org.openqa.selenium.WebDriverException">org.openqa.selenium.WebDriverException: 
+Timed out waiting for driver server to start.
+Build info: version: '3.14.0', revision: 'aacccce0', time: '2018-08-02T20:19:58.91Z'
+System info: host: 'DESKTOP-EOFSMQU', ip: '192.168.1.8', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '1.8.0_181'
+Driver info: driver.version: ChromeDriver
+	at kartik.AppTest.testSelenium(AppTest.java:34)
+Caused by: org.openqa.selenium.net.UrlChecker$TimeoutException: Timed out waiting for [http://localhost:29484/status] to be available after 20033 ms
+	at kartik.AppTest.testSelenium(AppTest.java:34)
+Caused by: java.util.concurrent.TimeoutException
+	at kartik.AppTest.testSelenium(AppTest.java:34)
+</error>
+    <system-err><![CDATA[[4748:10120:1006/130335.603:ERROR:cache_util_win.cc(19)] Unable to move the cache: 5
+[4748:10120:1006/130335.603:ERROR:cache_util.cc(140)] Unable to move cache folder C:\Users\Karti\AppData\Local\Google\Chrome\User Data\ShaderCache\GPUCache to C:\Users\Karti\AppData\Local\Google\Chrome\User Data\ShaderCache\old_GPUCache_000
+[4748:10120:1006/130335.603:ERROR:disk_cache.cc(168)] Unable to create cache
+[4748:10120:1006/130335.603:ERROR:shader_disk_cache.cc(620)] Shader Cache Creation failed: -2
+Created new window in existing browser session.
+]]></system-err>
+  </testcase>
 </testsuite>

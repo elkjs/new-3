@@ -1,4 +1,16 @@
 -------------------------------------------------------------------------------
 Test set: kartik.AppTest
 -------------------------------------------------------------------------------
-Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.066 s - in kartik.AppTest
+Tests run: 3, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 20.988 s <<< FAILURE! - in kartik.AppTest
+testSelenium(kartik.AppTest)  Time elapsed: 20.926 s  <<< ERROR!
+org.openqa.selenium.WebDriverException: 
+Timed out waiting for driver server to start.
+Build info: version: '3.14.0', revision: 'aacccce0', time: '2018-08-02T20:19:58.91Z'
+System info: host: 'DESKTOP-EOFSMQU', ip: '192.168.1.8', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '1.8.0_181'
+Driver info: driver.version: ChromeDriver
+	at kartik.AppTest.testSelenium(AppTest.java:34)
+Caused by: org.openqa.selenium.net.UrlChecker$TimeoutException: Timed out waiting for [http://localhost:29484/status] to be available after 20033 ms
+	at kartik.AppTest.testSelenium(AppTest.java:34)
+Caused by: java.util.concurrent.TimeoutException
+	at kartik.AppTest.testSelenium(AppTest.java:34)
+
