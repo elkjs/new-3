@@ -11,11 +11,6 @@ pipeline {
         build 'Build'
       }
     }
-    stage('cucumber') {
-      steps {
-        build 'cucumber'
-      }
-    }
     stage('smartbear') {
       steps {
         build 'smartbear'
