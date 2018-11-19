@@ -8,22 +8,22 @@ pipeline {
     }
     stage('build') {
       steps {
-        build 'test2'
+        build 'Build'
       }
     }
-    stage('sonar') {
+    stage('cucumber') {
       steps {
-        build 'sonartest'
+        build 'cucumber'
       }
     }
-    stage('sonar1gate') {
+    stage('smartbear') {
       steps {
-        build 'sonargate'
+        build 'smartbear'
       }
     }
-    stage('smartbear1.0') {
+    stage('xldeploy') {
        steps {
-         build 'readyapi'
+         build 'awsupload'
        }
     }
   }
