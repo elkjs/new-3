@@ -31,6 +31,11 @@ pipeline {
             build 'sonarcube'
           }
         }
+    stage('Sonarqube-fail') {
+          steps {
+                 build 'sonarcubefail'
+            }
+         }
     stage('xldeploy') {
        steps {
          build 'awsupload'
