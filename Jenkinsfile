@@ -59,7 +59,7 @@ pipeline {
   }
 
  post {
-   alaways {
+   always {
       logstashSend failBuild: true, maxLines: 1000
       }
 
