@@ -23,5 +23,10 @@ public class AppTest
     {
         System.out.println("junit test");
     }
+    @Test
+    public void kartik()
+    {
+        System.out.println("kartiksharma");
+    }
 
 }
