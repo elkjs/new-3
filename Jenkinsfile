@@ -36,7 +36,7 @@ pipeline {
        }
    }
 
-
+  }
 post {
     failure {
         mail to: 'kartik3588@gmail.com',
