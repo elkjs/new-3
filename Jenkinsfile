@@ -22,12 +22,8 @@ pipeline {
         }
        stage('build && SonarQube analysis') {
             steps {
-              echo "
-               // withSonarQubeEnv('My SonarQube server name') {
-                    // Optionally use a Maven environment you've configured already
-                   // 
-                       // bat 'mvn sonar:sonar'""
-              "  
+              echo " withSonarQubeEnv('My SonarQube server name')  bat 'mvn sonar:sonar "
+        
             }
         }
     }
