@@ -20,19 +20,21 @@ pipeline {
                 }
             }
         }
-       stage('build && SonarQube analysis') {
+       stage('sonarcube & quality gate') {
+          parallel {
+           stage('build && SonarQube analysis') {
             steps {
               echo " withSonarQubeEnv('My SonarQube server name')  bat 'mvn sonar:sonar "
         
+              }
             }
-        }
-       stage("Quality Gate") {
+           stage("Quality Gate") {
             steps {
                echo " something condition if pass or fail and also make WEBHOOK from sonarqube server "
                 }
             }
-        
-    }
+       }
+   }
 
 
 post {
