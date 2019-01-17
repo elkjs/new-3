@@ -38,14 +38,20 @@ pipeline {
      stage('xldeploy') {
           parallel {   
         stage('Package') {  
+          steps{
            echo "xldCreatePackage artifactsPath: 'build/libs', manifestPath: 'deployit-manifest.xml', darPath: '$JOB_NAME-$BUILD_NUMBER.0.dar' " 
-              }  
-         stage('Publish') {  
+              } 
+            }
+         stage('Publish') {
+           steps{
           echo " xldPublishPackage serverCredentials: '<user_name>', darPath: '$JOB_NAME-$BUILD_NUMBER.0.dar' "
              }    
-         stage('Deploy') {  
+           }
+         stage('Deploy') {
+           steps{
            echo " xldDeploy serverCredentials: '<user_name>', environmentId: 'Environments/Dev', packageId: 'Applications/<project_name>/$BUILD_NUMBER.0' "
            }
+         } 
        }        
     }
 
