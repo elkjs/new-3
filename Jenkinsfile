@@ -1,8 +1,7 @@
 pipeline {
   agent any
-  tools {
-        maven "apache-maven-3.5.4"
-    }
+  tool name: 'java', type: 'jdk'
+  tool name: 'maven', type: 'maven'
   stages {
         stage('Build') { 
             steps {
