@@ -28,7 +28,7 @@ pipeline {
         }
        stage("Quality Gate") {
             steps {
-               echo " timeout(time: 1, unit: 'HOURS') { Parameter indicates whether to set pipeline to UNSTABLE if Quality Gate fails // true = set pipeline to UNSTABLE, false = don't // Requires SonarQube Scanner for Jenkins 2.7+ waitForQualityGate abortPipeline: true "
+               echo " something condition if pass or fail and also make WEBHOOK from sonarqube server "
                 }
             }
         }
