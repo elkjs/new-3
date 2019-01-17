@@ -88,9 +88,10 @@ post {
              body: "Something is wrong with ${env.BUILD_URL}"
     }
     success {
-        mail to: 'kartik3588@gmail.com',
-             subject: "Sucessed Pipeline: ${currentBuild.fullDisplayName}",
-             body: "Something is wrong with ${env.BUILD_URL}"
+       echo """ 
+             mail to: 'kartik3588@gmail.com',
+             """
+             
     }
   }
 }
