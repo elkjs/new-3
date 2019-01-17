@@ -24,7 +24,9 @@ pipeline {
           parallel {
            stage('build && SonarQube analysis') {
             steps {
-              echo " withSonarQubeEnv('My SonarQube server name')  bat 'mvn sonar:sonar "
+              echo """ withSonarQubeEnv('My SonarQube server name'){
+                 bat 'mvn sonar:sonar'
+                   } """
         
               }
             }
@@ -35,21 +37,44 @@ pipeline {
             }
        }
    }
+     stage('Ready API(soap UI)'){
+       steps{
+         echo """
+          SoapUIPro environment: '',
+            pathToProjectFile: 'C:\\Default-SoapUI-Pro-Project-readyapi-project.xml',
+            pathToTestrunner: 'C:\\Program Files\\SmartBear\\ReadyAPI-2.5.0\\bin',
+            projectPassword: '',
+            testCase: 'REST TestCase',
+            testSuite: 'TestSuite' """  
+             
+       }
+          
+          }
      stage('xldeploy') {
-          parallel {   
+      parallel {   
         stage('Package') {  
           steps{
-           echo "xldCreatePackage artifactsPath: 'build/libs', manifestPath: 'deployit-manifest.xml', darPath: '$JOB_NAME-$BUILD_NUMBER.0.dar' " 
+           echo """
+             xldCreatePackage artifactsPath: 'build/libs',
+             manifestPath: 'deployit-manifest.xml', 
+             darPath: '$JOB_NAME-$BUILD_NUMBER.0.dar' """
               } 
             }
          stage('Publish') {
            steps{
-          echo " xldPublishPackage serverCredentials: '<user_name>', darPath: '$JOB_NAME-$BUILD_NUMBER.0.dar' "
+          echo """
+              xldPublishPackage darPath: 'path-of-dar', 
+              serverCredentials: 'admin_xldeloy' """ 
+             
              }    
            }
          stage('Deploy') {
            steps{
-           echo " xldDeploy serverCredentials: '<user_name>', environmentId: 'Environments/Dev', packageId: 'Applications/<project_name>/$BUILD_NUMBER.0' "
+           echo """
+             xldDeploy environmentId: 'Environments/env-of-xldeploy', 
+             packageId: 'Applications/name-of-application', 
+             serverCredentials: 'admin_xldeloy' """
+                             
            }
          } 
        }        
