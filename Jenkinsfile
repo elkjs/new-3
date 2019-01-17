@@ -31,7 +31,7 @@ pipeline {
                echo " something condition if pass or fail and also make WEBHOOK from sonarqube server "
                 }
             }
-        }
+        
     }
 
 
