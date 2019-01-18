@@ -40,7 +40,8 @@ pipeline {
    }
      stage('Ready API(soap UI)'){
        steps{
-         echo """
+         echo """ 
+            FOR RUNNING THIS STAGE YOU NEED AN AGENT HAVING READY API TOOL.
           SoapUIPro environment: '',
             pathToProjectFile: 'C:\\Default-SoapUI-Pro-Project-readyapi-project.xml',
             pathToTestrunner: 'C:\\Program Files\\SmartBear\\ReadyAPI-2.5.0\\bin',
