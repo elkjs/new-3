@@ -91,6 +91,7 @@ post {
     }
     success {
        echo """ 
+             ONLY PRINT
              mail to: 'kartik3588@gmail.com',
              """
              
