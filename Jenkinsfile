@@ -31,13 +31,16 @@ pipeline {
         
               }
             }
-           stage("Quality Gate") {
+        stage("Quality Gate") {
             steps {
-               echo " something condition if pass or fail and also make WEBHOOK from sonarqube server "
-                }
+               timeout(time: 1, unit: 'HOURS') { 
+                  def qg = waitForQualityGate() 
+                       if (qg.status != 'OK') {
+                           error "Pipeline aborted due to quality gate failure: ${qg.status}"
+                                       }
+                      }
             }
-       }
-   }
+         }
      stage('Ready API(soap UI)'){
        steps{
          echo """ 
