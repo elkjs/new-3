@@ -22,14 +22,12 @@ pipeline {
             }
         }
        stage('sonarcube & quality gate') {
-           stage('build && SonarQube analysis') {
             steps {
                withSonarQubeEnv('sonarserver'){
                  bat 'mvn sonar:sonar'
                    } 
               }
             }
-         }
      stage('Ready API(soap UI)'){
        steps{
          echo """ 
