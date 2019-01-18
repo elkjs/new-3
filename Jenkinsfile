@@ -25,9 +25,9 @@ pipeline {
           parallel {
            stage('build && SonarQube analysis') {
             steps {
-              echo """ withSonarQubeEnv('My SonarQube server name'){
+               withSonarQubeEnv('sonarserver'){
                  bat 'mvn sonar:sonar'
-                   } """
+                   } 
         
               }
             }
