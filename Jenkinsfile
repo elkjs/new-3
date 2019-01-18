@@ -27,16 +27,7 @@ pipeline {
                  bat 'mvn sonar:sonar'
                    } 
               }
-            }
-      stage("Quality Gate") {
-            steps {
-                timeout(time: 1, unit: 'HOURS') {
-                    
-                    waitForQualityGate abortPipeline: true
-                }
-            }
-        }
-        
+            }  
      stage('Ready API(soap UI)'){
        steps{
          echo """ 
