@@ -30,17 +30,12 @@ pipeline {
             }
       stage("Quality Gate") {
             steps {
-              options {
-                timeout(time: 1000, unit: 'SECONDS') 
-                          }
-                    script {
-                       def qg = waitForQualityGate() 
-                        if (qg.status != 'OK') {
-                              error "Pipeline aborted due to quality gate failure: ${qg.status}"
-                              }
-                          }
-                       }
-                 }
+                timeout(time: 1, unit: 'HOURS') {
+                    
+                    waitForQualityGate abortPipeline: true
+                }
+            }
+        }
         
      stage('Ready API(soap UI)'){
        steps{
