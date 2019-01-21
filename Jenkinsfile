@@ -21,7 +21,9 @@ pipeline {
                 }
             }
         }
-       stage('sonarcube & quality gate') {
+    stage('sonarcube & quality gate') {
+      parallel {
+       stage('sonarcube analysis') {
             steps {
                withSonarQubeEnv('sonarserver'){
                  bat 'mvn sonar:sonar'
