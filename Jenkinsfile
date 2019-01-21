@@ -38,7 +38,7 @@ pipeline {
                 }
             }
        }
-        
+      
      stage('Ready API(soap UI)'){
        steps{
          echo """ 
