@@ -21,8 +21,7 @@ pipeline {
                 }
             }
         }
-    stage('sonarcube & quality gate') {
-      parallel {
+   
        stage('sonarcube analysis') {
             steps {
                withSonarQubeEnv('sonarserver'){
@@ -40,9 +39,7 @@ pipeline {
                 }
             }
          }
-      } 
-    } 
-      
+     
      stage('Ready API(soap UI)'){
        steps{
          echo """ 
