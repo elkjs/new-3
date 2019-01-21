@@ -37,6 +37,7 @@ pipeline {
                     waitForQualityGate abortPipeline: true
                 }
             }
+       }
         
      stage('Ready API(soap UI)'){
        steps{
