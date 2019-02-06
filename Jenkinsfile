@@ -17,7 +17,7 @@ pipeline {
             }
             post {
                 always {
-                    junit 'target/surefire-reports/*.xml' 
+                    junit 'target/surefire-reports/*.xml'   
                 }
             }
         }
@@ -39,6 +39,14 @@ pipeline {
                 }
             }
          }
+    stage(hygieia){
+      steps{
+      hygieiaArtifactPublishStep artifactDirectory: '/target', artifactGroup: 'artifact.dev.product', artifactName: '*.jar', artifactVersion: '1.0'  
+      hygieiaSonarPublishStep ceQueryIntervalInSeconds: '10', ceQueryMaxAttempts: '30'
+      hygieiaTestPublishStep buildStatus: 'Success', testApplicationName: 'kartik.app.hello', testEnvironmentName: 'lehdhdf', testFileNamePattern: '*.xml', testResultsDirectory: '/target/surefire-reports/*.xml', testType: 'Unit'  
+      
+      }
+    }
      
      stage('Ready API(soap UI)'){
        steps{
