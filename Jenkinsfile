@@ -7,38 +7,46 @@ pipeline {
   stages {
         stage('Build') { 
             steps {
-                
+              logstash { 
                 bat 'mvn -B -DskipTests clean package' 
-            }
+                } 
+              }
         }
         stage('Test') { 
-            steps {
+            steps { 
+              logstash {
                 bat 'mvn test' 
+                }
             }
             post {
               
                 always {
                   
                     junit 'target/surefire-reports/*.xml'   
+                    logstashSend failBuild: true, maxLines: 1000
                 }
             }
         }
    
        stage('sonarcube analysis') {
             steps {
+              logstash {
                withSonarQubeEnv('sonarserver'){
-                 bat 'mvn sonar:sonar'
-                   } 
+                 bat 'mvn sonar:sonar' 
+                           }
+                }
               }
             }
        stage("Quality Gate") {
             steps {
-                timeout(time: 1, unit: 'HOURS') {
+              logstash {  
+              timeout(time: 1, unit: 'HOURS') {
                     // Parameter indicates whether to set pipeline to UNSTABLE if Quality Gate fails
                     // true = set pipeline to UNSTABLE, false = don't
                     // Requires SonarQube Scanner for Jenkins 2.7+
                     waitForQualityGate abortPipeline: true
                 }
+              }
             }
          }
     stage(hygieia){
@@ -67,28 +75,32 @@ pipeline {
      stage('xldeploy') {
       parallel {   
         stage('Package') {  
-          steps{
+          steps{ 
+            logstash {
            echo """
              xldCreatePackage artifactsPath: 'build/libs',
              manifestPath: 'deployit-manifest.xml', 
              darPath: '$JOB_NAME-$BUILD_NUMBER.0.dar' """
               } 
+             }
             }
          stage('Publish') {
            steps{
+             logstash {
           echo """
               xldPublishPackage darPath: 'path-of-dar', 
               serverCredentials: 'admin_xldeloy' """ 
-             
+                  }
              }    
            }
          stage('Deploy') {
            steps{
+             logstash {
            echo """
              xldDeploy environmentId: 'Environments/env-of-xldeploy', 
              packageId: 'Applications/name-of-application', 
              serverCredentials: 'admin_xldeloy' """
-                             
+             }             
            }
          } 
        }        
@@ -106,6 +118,7 @@ post {
              ONLY PRINT
              mail to: 'kartik3588@gmail.com',
              """
+      logstashSend failBuild: true, maxLines: 1000
              
      }
    }
