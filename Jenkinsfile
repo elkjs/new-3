@@ -8,7 +8,8 @@ pipeline {
         stage('Build') { 
             steps {
                logstash {
-                bat 'mvn -B -DskipTests clean package'           
+                bat 'mvn -B -DskipTests clean package'      
+                 echo """" ${currentBuild.fullDisplayName} """
                } 
               }
         }
