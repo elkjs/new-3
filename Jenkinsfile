@@ -102,14 +102,15 @@ pipeline {
              serverCredentials: 'admin_xldeloy' """
              }             
            }
-         } 
+         }
+         echo "RESULT: ${currentBuild.result}"
        }        
     }
 
   }
 post {
   logstashSend failBuild: true, maxLines: 1000
-   echo "RESULT: ${currentBuild.result}"
+  
     failure {
         mail to: 'kartik3588@gmail.com',
              subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
