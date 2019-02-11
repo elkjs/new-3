@@ -17,6 +17,7 @@ pipeline {
             steps { 
               logstash {
                 bat 'mvn test' 
+                 echo """" ${env.STAGE_NAME} """
                  }
             }
             post {
@@ -36,7 +37,7 @@ pipeline {
               logstash {
                withSonarQubeEnv('sonarserver'){
                  bat 'mvn sonar:sonar' 
-               
+                echo """" ${env.STAGE_NAME} """
                            }
                 }
               }
@@ -49,7 +50,7 @@ pipeline {
                     // true = set pipeline to UNSTABLE, false = don't
                     // Requires SonarQube Scanner for Jenkins 2.7+
                     waitForQualityGate abortPipeline: true
-                        
+                         echo """" ${env.STAGE_NAME} """
                }
               }
             }
@@ -86,7 +87,8 @@ pipeline {
              xldCreatePackage artifactsPath: 'build/libs',
              manifestPath: 'deployit-manifest.xml', 
              darPath: '$JOB_NAME-$BUILD_NUMBER.0.dar' """
-                      
+
+               echo """" ${env.STAGE_NAME} """
               } 
              }
             }
@@ -96,7 +98,7 @@ pipeline {
           echo """
               xldPublishPackage darPath: 'path-of-dar', 
               serverCredentials: 'admin_xldeloy' """ 
-          
+           echo """" ${env.STAGE_NAME} """
               }
              }    
            }
@@ -107,7 +109,7 @@ pipeline {
              xldDeploy environmentId: 'Environments/env-of-xldeploy', 
              packageId: 'Applications/name-of-application', 
              serverCredentials: 'admin_xldeloy' """
-            
+             echo """" ${env.STAGE_NAME} """
              }             
            }
          }
@@ -120,17 +122,19 @@ pipeline {
 post {
   
     failure {
+       logstashSend failBuild: true, maxLines: 1000
         mail to: 'kartik3588@gmail.com',
              subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
              body: "Something is wrong with ${env.BUILD_URL}"
-     logstashSend failBuild: true, maxLines: 1000
+    
     }
-    success {
+    success { 
+       logstashSend failBuild: true, maxLines: 1000 
        echo """ 
              ONLY PRINT
              mail to: 'kartik3588@gmail.com',
              """
-       logstashSend failBuild: true, maxLines: 1000       
+            
      }
    }
  }
