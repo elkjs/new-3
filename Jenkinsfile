@@ -10,6 +10,7 @@ pipeline {
                logstash {
                 bat 'mvn -B -DskipTests clean package' 
                     currentBuild.result = 'SUCCESS' 
+                 echo "RESULT: ${currentBuild.result}" 
                } 
               }
         }
