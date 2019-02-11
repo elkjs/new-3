@@ -117,19 +117,19 @@ pipeline {
 
   }
 post {
-  logstashSend failBuild: true, maxLines: 1000
   
     failure {
         mail to: 'kartik3588@gmail.com',
              subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
              body: "Something is wrong with ${env.BUILD_URL}"
+     logstashSend failBuild: true, maxLines: 1000
     }
     success {
        echo """ 
              ONLY PRINT
              mail to: 'kartik3588@gmail.com',
              """
-             
+       logstashSend failBuild: true, maxLines: 1000       
      }
    }
  }
