@@ -108,6 +108,8 @@ pipeline {
 
   }
 post {
+  logstashSend failBuild: true, maxLines: 1000
+   echo "RESULT: ${currentBuild.result}"
     failure {
         mail to: 'kartik3588@gmail.com',
              subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
@@ -118,7 +120,6 @@ post {
              ONLY PRINT
              mail to: 'kartik3588@gmail.com',
              """
-      logstashSend failBuild: true, maxLines: 1000
              
      }
    }
