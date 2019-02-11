@@ -117,6 +117,11 @@ pipeline {
              serverCredentials: 'admin_xldeloy' """
              echo """" deploy1 """
              echo "deploy1currentResult: ${currentBuild.currentResult}"
+             post {
+                always {
+                    echo "Pipeline result: ${currentBuild.result}"
+                }
+            }
              }             
            }
          }
@@ -127,16 +132,18 @@ pipeline {
 
 
 post {
-    echo "Pipelineresult: ${currentBuild.result}"
+   always {
+          logstashSend failBuild: true, maxLines: 1000   
+          echo "Pipeline result: ${currentBuild.result}"
+        }
+   
     failure {
-       logstashSend failBuild: true, maxLines: 1000
         mail to: 'kartik3588@gmail.com',
              subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
              body: "Something is wrong with ${env.BUILD_URL}"
     
     }
     success { 
-       logstashSend failBuild: true, maxLines: 1000 
        echo """ 
              ONLY PRINT
              mail to: 'kartik3588@gmail.com',
