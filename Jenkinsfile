@@ -116,23 +116,24 @@ pipeline {
 
   }
 post {
-  
-    failure {
-        mail to: 'kartik3588@gmail.com',
-             subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
-             body: "Something is wrong with ${env.BUILD_URL}"
-      currentBuild.result = 'FAILURE'
-     logstashSend failBuild: true, maxLines: 1000
-    }
-    success {
-       echo """ 
+  try {
+    echo """ 
              ONLY PRINT
              mail to: 'kartik3588@gmail.com',
              """
       currentBuild.result = 'SUCCESS'
        logstashSend failBuild: true, maxLines: 1000       
-     }
-   echo "RESULT: ${currentBuild.result}"
-   }
+     }  catch (Exception err) {
+        mail to: 'kartik3588@gmail.com',
+             subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
+             body: "Something is wrong with ${env.BUILD_URL}"
+      currentBuild.result = 'FAILURE'
+     logstashSend failBuild: true, maxLines: 1000
+
+    currentBuild.result = 'FAILURE'
+    }
+    echo "RESULT: ${currentBuild.result}"
+
+    
  }
 
