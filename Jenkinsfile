@@ -32,7 +32,7 @@ pipeline {
             steps {
               logstash {
                withSonarQubeEnv('sonarserver'){
-                 bat 'mvn sonr:sonar' 
+                 bat 'mvn sonar:sonar' 
                            }
                 }
               }
