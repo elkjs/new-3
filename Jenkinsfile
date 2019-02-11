@@ -7,14 +7,9 @@ pipeline {
   stages {
         stage('Build') { 
             steps {
-               logstash { 
-                 try {
+               logstash {
                 bat 'mvn -B -DskipTests clean package' 
-                    currentBuild.result = 'SUCCESS'   
-                   } catch (Exception err) {
-                      currentBuild.result = 'FAILURE'
-                         }
-                   echo "RESULT: ${currentBuild.result}"
+                    currentBuild.result = 'SUCCESS' 
                } 
               }
         }
@@ -22,8 +17,7 @@ pipeline {
             steps { 
               logstash {
                 bat 'mvn test' 
-                            echo "RESULT: ${currentBuild.result}"
-              }
+                 }
             }
             post {
               
@@ -32,7 +26,7 @@ pipeline {
                     junit 'target/surefire-reports/*.xml'   
                            echo "RESULT: ${currentBuild.result}"
                   logstashSend failBuild: true, maxLines: 1000
-                  
+                  currentBuild.result = 'SONAR SUCCESS' 
                 }
             }
         }
@@ -42,7 +36,7 @@ pipeline {
               logstash {
                withSonarQubeEnv('sonarserver'){
                  bat 'mvn sonar:sonar' 
-                          echo "RESULT: ${currentBuild.result}"
+                 currentBuild.result = 'SONAR SUCCESS'   
                            }
                 }
               }
