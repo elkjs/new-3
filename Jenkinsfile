@@ -9,21 +9,25 @@ pipeline {
             steps {
               logstash { 
                 bat 'mvn -B -DskipTests clean package' 
-                } 
+                         echo "RESULT: ${currentBuild.result}"
+               } 
               }
         }
         stage('Test') { 
             steps { 
               logstash {
                 bat 'mvn test' 
-                }
+                            echo "RESULT: ${currentBuild.result}"
+              }
             }
             post {
               
                 always {
                   
                     junit 'target/surefire-reports/*.xml'   
-                    logstashSend failBuild: true, maxLines: 1000
+                           echo "RESULT: ${currentBuild.result}"
+                  logstashSend failBuild: true, maxLines: 1000
+                  
                 }
             }
         }
@@ -33,6 +37,7 @@ pipeline {
               logstash {
                withSonarQubeEnv('sonarserver'){
                  bat 'mvn sonar:sonar' 
+                          echo "RESULT: ${currentBuild.result}"
                            }
                 }
               }
@@ -45,7 +50,8 @@ pipeline {
                     // true = set pipeline to UNSTABLE, false = don't
                     // Requires SonarQube Scanner for Jenkins 2.7+
                     waitForQualityGate abortPipeline: true
-                }
+                        echo "RESULT: ${currentBuild.result}" 
+               }
               }
             }
          }
@@ -81,6 +87,7 @@ pipeline {
              xldCreatePackage artifactsPath: 'build/libs',
              manifestPath: 'deployit-manifest.xml', 
              darPath: '$JOB_NAME-$BUILD_NUMBER.0.dar' """
+                      echo "RESULT: ${currentBuild.result}"
               } 
              }
             }
@@ -90,7 +97,8 @@ pipeline {
           echo """
               xldPublishPackage darPath: 'path-of-dar', 
               serverCredentials: 'admin_xldeloy' """ 
-                  }
+           echo "RESULT: ${currentBuild.result}"
+              }
              }    
            }
          stage('Deploy') {
@@ -100,10 +108,10 @@ pipeline {
              xldDeploy environmentId: 'Environments/env-of-xldeploy', 
              packageId: 'Applications/name-of-application', 
              serverCredentials: 'admin_xldeloy' """
+            echo "RESULT: ${currentBuild.result}"
              }             
            }
          }
-         echo "RESULT: ${currentBuild.result}"
        }        
     }
 
