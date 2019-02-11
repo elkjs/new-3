@@ -9,7 +9,7 @@ pipeline {
             steps {
                logstash {
                 bat 'mvn -B -DskipTests clean package'      
-                 echo """" ${env.STAGE_NAME} """
+                 echo """" build1 """
                } 
               }
         }
@@ -17,7 +17,7 @@ pipeline {
             steps { 
               logstash {
                 bat 'mvn test' 
-                 echo """" ${env.STAGE_NAME} """
+                 echo """" test1 """
                  }
             }
             post {
@@ -37,7 +37,7 @@ pipeline {
               logstash {
                withSonarQubeEnv('sonarserver'){
                  bat 'mvn sonar:sonar' 
-                echo """" ${env.STAGE_NAME} """
+                echo """" sonarqube1 """
                            }
                 }
               }
@@ -50,7 +50,7 @@ pipeline {
                     // true = set pipeline to UNSTABLE, false = don't
                     // Requires SonarQube Scanner for Jenkins 2.7+
                     waitForQualityGate abortPipeline: true
-                         echo """" ${env.STAGE_NAME} """
+                         echo """" Sonargate1"""
                }
               }
             }
@@ -88,7 +88,7 @@ pipeline {
              manifestPath: 'deployit-manifest.xml', 
              darPath: '$JOB_NAME-$BUILD_NUMBER.0.dar' """
 
-               echo """" ${env.STAGE_NAME} """
+               echo """" xldeploy """
               } 
              }
             }
@@ -98,7 +98,7 @@ pipeline {
           echo """
               xldPublishPackage darPath: 'path-of-dar', 
               serverCredentials: 'admin_xldeloy' """ 
-           echo """" ${env.STAGE_NAME} """
+           echo """" publish1 """
               }
              }    
            }
@@ -109,7 +109,7 @@ pipeline {
              xldDeploy environmentId: 'Environments/env-of-xldeploy', 
              packageId: 'Applications/name-of-application', 
              serverCredentials: 'admin_xldeloy' """
-             echo """" ${env.STAGE_NAME} """
+             echo """" deploy1 """
              }             
            }
          }
