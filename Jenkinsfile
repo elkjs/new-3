@@ -9,8 +9,7 @@ pipeline {
             steps {
                logstash {
                 bat 'mvn -B -DskipTests clean package' 
-                    currentBuild.result = 'SUCCESS' 
-                 echo "RESULT: ${currentBuild.result}" 
+                   
                } 
               }
         }
@@ -25,9 +24,9 @@ pipeline {
                 always {
                   
                     junit 'target/surefire-reports/*.xml'   
-                           echo "RESULT: ${currentBuild.result}"
+                           
                   logstashSend failBuild: true, maxLines: 1000
-                  currentBuild.result = 'SONAR SUCCESS' 
+                 
                 }
             }
         }
@@ -37,7 +36,7 @@ pipeline {
               logstash {
                withSonarQubeEnv('sonarserver'){
                  bat 'mvn sonar:sonar' 
-                 currentBuild.result = 'SONAR SUCCESS'   
+               
                            }
                 }
               }
@@ -50,7 +49,7 @@ pipeline {
                     // true = set pipeline to UNSTABLE, false = don't
                     // Requires SonarQube Scanner for Jenkins 2.7+
                     waitForQualityGate abortPipeline: true
-                        echo "RESULT: ${currentBuild.result}" 
+                        
                }
               }
             }
@@ -87,7 +86,7 @@ pipeline {
              xldCreatePackage artifactsPath: 'build/libs',
              manifestPath: 'deployit-manifest.xml', 
              darPath: '$JOB_NAME-$BUILD_NUMBER.0.dar' """
-                      echo "RESULT: ${currentBuild.result}"
+                      
               } 
              }
             }
@@ -97,7 +96,7 @@ pipeline {
           echo """
               xldPublishPackage darPath: 'path-of-dar', 
               serverCredentials: 'admin_xldeloy' """ 
-           echo "RESULT: ${currentBuild.result}"
+          
               }
              }    
            }
@@ -108,7 +107,7 @@ pipeline {
              xldDeploy environmentId: 'Environments/env-of-xldeploy', 
              packageId: 'Applications/name-of-application', 
              serverCredentials: 'admin_xldeloy' """
-            echo "RESULT: ${currentBuild.result}"
+            
              }             
            }
          }
@@ -122,6 +121,7 @@ post {
         mail to: 'kartik3588@gmail.com',
              subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
              body: "Something is wrong with ${env.BUILD_URL}"
+      currentBuild.result = 'FAILURE'
      logstashSend failBuild: true, maxLines: 1000
     }
     success {
@@ -129,8 +129,10 @@ post {
              ONLY PRINT
              mail to: 'kartik3588@gmail.com',
              """
+      currentBuild.result = 'SUCCESS'
        logstashSend failBuild: true, maxLines: 1000       
      }
+   echo "RESULT: ${currentBuild.result}"
    }
  }
 
