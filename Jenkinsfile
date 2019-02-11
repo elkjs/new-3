@@ -122,26 +122,26 @@ pipeline {
     }
 
   }
+
+
 post {
-  try {
-    echo """ 
-             ONLY PRINT
-             mail to: 'kartik3588@gmail.com',
-             """
-      currentBuild.result = 'SUCCESS'
-       logstashSend failBuild: true, maxLines: 1000       
-     }  catch (Exception err) {
+  
+    failure {
         mail to: 'kartik3588@gmail.com',
              subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
              body: "Something is wrong with ${env.BUILD_URL}"
       currentBuild.result = 'FAILURE'
      logstashSend failBuild: true, maxLines: 1000
-
-    currentBuild.result = 'FAILURE'
     }
-    echo "RESULT: ${currentBuild.result}"
-
-    
+    success {
+       echo """ 
+             ONLY PRINT
+             mail to: 'kartik3588@gmail.com',
+             """
+      currentBuild.result = 'SUCCESS'
+       logstashSend failBuild: true, maxLines: 1000       
+     }
+   }
  }
 
-}
+
