@@ -7,9 +7,14 @@ pipeline {
   stages {
         stage('Build') { 
             steps {
-              logstash { 
+               logstash { 
+                 try {
                 bat 'mvn -B -DskipTests clean package' 
-                         echo "RESULT: ${currentBuild.result}"
+                    currentBuild.result = 'SUCCESS'   
+                   } catch (Exception err) {
+                      currentBuild.result = 'FAILURE'
+                         }
+                   echo "RESULT: ${currentBuild.result}"
                } 
               }
         }
