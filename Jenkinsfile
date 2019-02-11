@@ -10,6 +10,7 @@ pipeline {
                logstash {
                 bat 'mvn -B -DskipTests clean package'      
                  echo """" build1 """
+                 echo "build1currentResult: ${currentBuild.currentResult}"
                } 
               }
         }
@@ -18,7 +19,8 @@ pipeline {
               logstash {
                 bat 'mvn test' 
                  echo """" test1 """
-                 }
+                 echo "test11currentResult: ${currentBuild.currentResult}"
+              }
             }
             post {
               
@@ -38,6 +40,7 @@ pipeline {
                withSonarQubeEnv('sonarserver'){
                  bat 'mvn sonar:sonar' 
                 echo """" sonarqube1 """
+                 echo "sonarqube1currentResult: ${currentBuild.currentResult}"
                            }
                 }
               }
@@ -51,6 +54,7 @@ pipeline {
                     // Requires SonarQube Scanner for Jenkins 2.7+
                     waitForQualityGate abortPipeline: true
                          echo """" Sonargate1"""
+                         echo "sonargate11currentResult: ${currentBuild.currentResult}"
                }
               }
             }
@@ -88,7 +92,8 @@ pipeline {
              manifestPath: 'deployit-manifest.xml', 
              darPath: '$JOB_NAME-$BUILD_NUMBER.0.dar' """
 
-               echo """" xldeploy """
+               echo """" xldeploy1 """
+              echo "xldeploy1currentResult: ${currentBuild.currentResult}"
               } 
              }
             }
@@ -99,6 +104,7 @@ pipeline {
               xldPublishPackage darPath: 'path-of-dar', 
               serverCredentials: 'admin_xldeloy' """ 
            echo """" publish1 """
+               echo "publish1currentResult: ${currentBuild.currentResult}"
               }
              }    
            }
@@ -110,6 +116,7 @@ pipeline {
              packageId: 'Applications/name-of-application', 
              serverCredentials: 'admin_xldeloy' """
              echo """" deploy1 """
+               echo "deploy1currentResult: ${currentBuild.currentResult}"
              }             
            }
          }
