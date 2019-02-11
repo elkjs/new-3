@@ -116,7 +116,8 @@ pipeline {
              packageId: 'Applications/name-of-application', 
              serverCredentials: 'admin_xldeloy' """
              echo """" deploy1 """
-               echo "deploy1currentResult: ${currentBuild.currentResult}"
+             echo "deploy1currentResult: ${currentBuild.currentResult}"
+             echo "Pipeline result: ${currentBuild.result}"
              }             
            }
          }
@@ -127,7 +128,7 @@ pipeline {
 
 
 post {
-  
+    echo "Pipelineresult: ${currentBuild.result}"
     failure {
        logstashSend failBuild: true, maxLines: 1000
         mail to: 'kartik3588@gmail.com',
