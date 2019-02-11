@@ -9,7 +9,7 @@ pipeline {
             steps {
                logstash {
                 bat 'mvn -B -DskipTests clean package'      
-                 echo """" ${currentBuild.fullDisplayName} """
+                 echo """" ${env.JOB_NAME} """
                } 
               }
         }
