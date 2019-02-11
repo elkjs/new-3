@@ -117,11 +117,6 @@ pipeline {
              serverCredentials: 'admin_xldeloy' """
              echo """" deploy1 """
              echo "deploy1currentResult: ${currentBuild.currentResult}"
-             post {
-                always {
-                    echo "Pipeline result: ${currentBuild.result}"
-                }
-              }
              }             
            }
          }
