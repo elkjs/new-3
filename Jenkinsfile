@@ -129,7 +129,7 @@ pipeline {
 post {
    always {
           logstashSend failBuild: true, maxLines: 1000   
-          echo "Pipeline result: ${currentBuild.result}"
+          echo "PipelinecurrentResult: ${currentBuild.currentResult}"
         }
    
     failure {
