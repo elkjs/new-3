@@ -8,7 +8,7 @@ pipeline {
         stage('Build') { 
             steps {
                logstash {
-                sh 'mvn clean package'      
+                sh 'mvn -B -DskipTests clean package'      
                  echo """" build1 """
                  echo "build1currentResult: ${currentBuild.currentResult}"
                } 
