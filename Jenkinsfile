@@ -8,7 +8,7 @@ pipeline {
         stage('Build') { 
             steps {
                logstash {
-                bat 'mvn -B -DskipTests clean package'      
+                bat 'mvn clean package'      
                  echo """" build1 """
                  echo "build1currentResult: ${currentBuild.currentResult}"
                } 
@@ -22,7 +22,7 @@ pipeline {
                  echo "test11currentResult: ${currentBuild.currentResult}"
               }
             }
-            post {
+            /*post {
               
                 always {
                   
@@ -31,7 +31,7 @@ pipeline {
                   logstashSend failBuild: true, maxLines: 1000
                  
                 }
-            }
+            } */
         }
    
        stage('sonarcube analysis') {
@@ -59,16 +59,16 @@ pipeline {
               }
             }
          }
-    stage(hygieia){
+    /*stage(hygieia){
       steps{
       hygieiaArtifactPublishStep artifactDirectory: '/target', artifactGroup: 'artifact.dev.product', artifactName: '*.jar', artifactVersion: '1.0'  
       hygieiaSonarPublishStep ceQueryIntervalInSeconds: '10', ceQueryMaxAttempts: '30'
       hygieiaDeployPublishStep applicationName: 'myApp', artifactDirectory: '/target', artifactGroup: 'artifact.dev.product', artifactName: '*.jar', artifactVersion: '1.0', buildStatus: 'Success', environmentName: 'env09090'
       
       }
-    }
+    }*/
      
-     stage('Ready API(soap UI)'){
+     /* stage('Ready API(soap UI)'){
        steps{
          echo """ 
             FOR RUNNING THIS STAGE YOU NEED AN AGENT HAVING READY API TOOL.
@@ -121,7 +121,7 @@ pipeline {
            }
          }
        }        
-    }
+    }*/
 
   }
 
