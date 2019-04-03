@@ -128,23 +128,23 @@ pipeline {
 
 post {
    always {
-          logstashSend failBuild: true, maxLines: 1000   
+           //logstashSend failBuild: true, maxLines: 1000   
           echo "PipelinecurrentResult: ${currentBuild.currentResult}"
         }
    
-    failure {
+   /* failure {
         mail to: 'kartik3588@gmail.com',
              subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
              body: "Something is wrong with ${env.BUILD_URL}"
     
-    }
-    success { 
+    }*/
+    /*success { 
        echo """ 
              ONLY PRINT
              mail to: 'kartik3588@gmail.com',
              """
             
-     }
+     }*/
    }
  }
 
